@@ -1,0 +1,35 @@
+{
+	"DAILY_TASKS_TRAIN" : {
+		"FILTER_BY_SEARCH" : "Rechercher ...",
+		"TABLE" : {
+			"DEADLINE" : "Deadline",
+			"DONE" : "Effectuée",
+			"TRAINID" : "TrainId",
+			"TASK" : "Tâche",
+			"COMMENT" : "Commentaire"
+		},
+		"DIALOG" : {
+			"TASK" : "Tâche : ",
+			"COMMENTS" : "Commentaires",
+			"CREATED_BY" : "Créé par : ",
+			"DATE" : "Date : ",
+			"ADD_NEW_COMMENT" : "Entrer un nouveau commentaire...",
+			"SUBMIT" : "Envoyer",
+			"ADD" : "ajouter",
+			"COMMENTS_EMPTY_1" : "Il n'y a aucun commentaire pour cette tâche,",
+			"COMMENTS_EMPTY_2" : "Cliquez sur le bouton pour ajouter un commentaire."
+		}
+	},
+	"MENU" : {
+		"ADMINISTRATION_TITLE" : "Ouvrir le panneau de gestion",
+		"DAILY_TASK_TRAIN_TITLE" : "Tâches du jour en cours",
+		"HISTORY_TITLE" : "Afficher l'historique de toutes les tâches",
+		"IMPORT_TITLE" : "Importer les données depuis ARP"
+	},
+	"NAVIGATION" : {
+		"ADMINISTRATION" : "Administration",
+		"DAILY_TASK_TRAIN" : "Tâches du jour",
+		"HISTORY" : "Historique",
+		"IMPORT" : "Import"
+	}
+}

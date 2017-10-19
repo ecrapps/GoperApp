@@ -1,0 +1,35 @@
+{
+	"DAILY_TASKS_TRAIN" : {
+		"FILTER_BY_SEARCH" : "Search ...",
+		"TABLE" : {
+			"DEADLINE" : "Deadline",
+			"DONE" : "Done",
+			"TRAINID" : "TrainId",
+			"TASK" : "Task",
+			"COMMENT" : "Comment"
+		},
+		"DIALOG" : {
+			"TASK" : "Task : ",
+			"COMMENTS" : "Comments",
+			"CREATED_BY" : "Created by : ",
+			"DATE" : "Date : ",
+			"ADD_NEW_COMMENT" : "Add new comment...",
+			"SUBMIT" : "Submit",
+			"ADD" : "Add",
+			"COMMENTS_EMPTY_1" : "There are no comment for this task yet,",
+			"COMMENTS_EMPTY_2" : "Click the Add button to add a comment."
+		}
+	},
+	"MENU" : {
+		"ADMINISTRATION_TITLE" : "Open the management area",
+		"DAILY_TASK_TRAIN_TITLE" : "Current daily tasks",
+		"HISTORY_TITLE" : "Show history of all tasks",
+		"IMPORT_TITLE" : "Import data from ARP"
+	},
+	"NAVIGATION" : {
+		"ADMINISTRATION" : "Administration",
+		"DAILY_TASK_TRAIN" : "Daily tasks",
+		"HISTORY" : "History",
+		"IMPORT" : "Import"
+	}
+}

@@ -1,0 +1,35 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button ng-click="toggleLeft()" class="md-icon-button md-primary" aria-label="Settings" hide-gt-md>
+      <i style="color: white;" class="material-icons">dehaze</i>
+    </md-button>
+    <span flex></span>
+
+   <md-menu md-offset="0 -7">
+      <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
+        <md-icon md-svg-src="{{ languageSvgPath }}" aria-label="Google Hangout"></md-icon>
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="changeLanguage('fr', 'assets/icons/fr_FR.svg')">
+        	 <md-icon md-svg-src="assets/icons/fr_FR.svg" aria-label="Google Hangout"></md-icon>
+            FR
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="changeLanguage('en', 'assets/icons/en_UK.svg')">
+       	 	<md-icon md-svg-src="assets/icons/en_UK.svg" aria-label="Google Hangout"></md-icon>
+            EN
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="changeLanguage('en', 'assets/icons/ger_GER.svg')">
+       	 	<md-icon md-svg-src="assets/icons/ger_GER.svg" aria-label="Google Hangout"></md-icon>
+            GER
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+    <md-button ng-clik="test()" class="md-warn">Déconnexion</md-button>
+  </div>
+</md-toolbar>

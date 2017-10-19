@@ -1,0 +1,14 @@
+<div ng-controller="DailyTrainTasksController">
+	
+	<div layout="row">
+	  <div flex-offset="80"></div>
+	  <div flex>
+		<input placeholder="{{ 'DAILY_TASKS_TRAIN.FILTER_BY_SEARCH' | translate }}" class="filterInput" type="text" ng-model="filter" ng-change="onFilterChanged(filter)"/>
+	  </div>
+	</div>
+	
+    <div style="height: 100%; padding-top: 26px; box-sizing: border-box;">
+        <div id="myGrid" ag-grid="gridOptions" class="ag-theme-material" style="height: 100%;"></div>
+    </div>
+
+</div>

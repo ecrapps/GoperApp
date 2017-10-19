@@ -1,0 +1,75 @@
+<md-dialog aria-label="{{task.taskname}}" flex=60>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2><span translate="DAILY_TASKS_TRAIN.DIALOG.TASK">Task :</span>{{task.taskname}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <ng-md-icon icon="close" style="fill: white" size="24" aria-label="Close dialog"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <md-content flex layout-padding>
+          <!-- Row -->
+          <div layout="row" layout-align="center center">
+        <div flex-gt-sm="50" flex layout-margin>
+          <md-list flex ng-if="clickedComment" class="md-dense commentListHeight">
+            <md-subheader class="md-no-sticky" translate="DAILY_TASKS_TRAIN.DIALOG.COMMENTS">Comments</md-subheader>
+            <md-list-item class="md-2-line" ng-class="comment.isSelected ? 'commentSelected' : ''" ng-repeat="comment in task.comments" ng-click="showClickedComment(comment)">
+            <i class="material-icons md-avatar-icon" style="font-size:24px">comment</i>
+                <div class="md-list-item-text">
+                <p>{{comment.content}}</p>
+              </div>
+            </md-list-item>
+          </md-list>
+
+          <p ng-if="!clickedComment && !createComment">
+            <span translate="DAILY_TASKS_TRAIN.DIALOG.COMMENTS_EMPTY_1">There are no comment for this task yet.</span>
+            <br />
+            <span translate="DAILY_TASKS_TRAIN.DIALOG.COMMENTS_EMPTY_2">Click the Add button to add a comment.</span>
+          </p>
+        </div>
+
+            <div flex-gt-sm="50" flex layout-margin ng-if="clickedComment">
+              <md-whiteframe class="md-whiteframe-5dp" layout>
+                <md-list flex layout-align="center none">
+                      <md-list-item class="md-3-line">
+                        <div class="md-list-item-text" layout="column">
+                          <h3><span translate="DAILY_TASKS_TRAIN.DIALOG.CREATED_BY">Created by</span> {{clickedComment.author}}</h3>
+                          <h4><span translate="DAILY_TASKS_TRAIN.DIALOG.DATE">Date : </span> {{clickedComment.date | date: "dd.mm.yyyy HH:mm"}}</h4>
+                          <p>"{{clickedComment.content}}"</p>
+                        </div>
+                      </md-list-item>
+                  </md-list>
+              </md-whiteframe>
+            </div>
+          </div>
+          <!-- End row -->
+
+          <!-- Row -->
+          <div layout="row" layout-align="center center" layout-margin>
+            <form name="commentForm" ng-submit="saveNewComment(newComment)">
+              <md-input-container class="md-block" layout-margin>
+                <div flex-gt-sm="70" flex ng-if="createComment" layout-margin>
+                  <label translate="DAILY_TASKS_TRAIN.DIALOG.ADD_NEW_COMMENT">Add new comment</label>
+                  <input rows="3" cols="110" aria-label="Add new comment" ng-model="newComment.message" autofocus></input>
+                </div>
+              </md-input-container>
+
+              <md-button type="submit" class="md-fab md-fab-bottom-right" aria-label="Save comment" ng-if="createComment">
+                <md-tooltip md-direction="bottom"><span translate="DAILY_TASKS_TRAIN.DIALOG.SUBMIT">Submit</span></md-tooltip>
+                <md-icon>send</md-icon>
+              </md-button>
+            </form>
+
+            <md-button class="md-fab md-fab-bottom-right" aria-label="Add comment" ng-click="showCommentCreation()" ng-if="!createComment">
+              <md-tooltip md-direction="bottom"><span translate="DAILY_TASKS_TRAIN.DIALOG.ADD">Add</span></md-tooltip>
+              <md-icon>add</md-icon>
+            </md-button>
+
+          </div>
+          <!-- End row -->          
+        </md-content>
+    </md-dialog-content>
+</md-dialog>

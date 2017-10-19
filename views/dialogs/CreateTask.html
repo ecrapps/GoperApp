@@ -1,0 +1,26 @@
+<md-content>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ type }} une tâche</h2>
+			<span flex></span>
+	        <md-button class="md-icon-button" ng-click="cancel()">
+	          <md-icon aria-label="Close dialog">close</md-icon>
+	        </md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding>
+		<form name="createTask" ng-submit="save(newTask)">
+			<md-input-container class="md-block" flex-gt-sm>
+	          <label>Nom de la tâche</label>
+	          <input ng-model="newTask.name" required>
+	        </md-input-container>
+	        <md-input-container class="md-block" flex-gt-sm>
+	          <label>Délai</label>
+	          <input ng-model="newTask.taskDelay" required>
+	        </md-input-container>
+	        <div layout="row" layout-align="center center">
+	        	<md-button type="submit" class="md-raised md-accent" ng-disabled="!createTask.$valid">&nbsp; Enregistrer &nbsp;</md-button>
+	        </div>
+        </form>
+	</md-content>
+</md-content>

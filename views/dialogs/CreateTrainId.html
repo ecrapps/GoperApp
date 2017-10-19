@@ -1,0 +1,29 @@
+<md-content>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ type }} un trainId</h2>
+			<span flex></span>
+	        <md-button class="md-icon-button" ng-click="cancel()">
+	          <md-icon aria-label="Close dialog">close</md-icon>
+	        </md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding>
+		<form name="createTrainId" ng-submit="save(newTrainId)">
+			<md-input-container class="md-block" flex-gt-sm>
+	          <label>Nom du trainId</label>
+	          <input ng-model="newTrainId.name" required>
+	        </md-input-container>
+	        <md-input-container class="md-block" flex-gt-sm>
+	          <label>Type MD</label>
+	          <md-select ng-model="newTrainId.isMD" placeholder="Type MD" class="md-no-underline" required md-no-asterisk="false">
+	          	<md-option value="0" ng-selected="true">Non</md-option>
+	          	<md-option value="1">Oui</md-option>
+	          </md-select>
+	        </md-input-container>
+	        <div layout="row" layout-align="center center">
+	        	<md-button type="submit" class="md-raised md-accent" ng-disabled="!createTrainId.$valid">&nbsp; Enregistrer &nbsp;</md-button>
+	        </div>
+        </form>
+	</md-content>
+</md-content>

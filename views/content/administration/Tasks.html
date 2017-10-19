@@ -1,0 +1,29 @@
+<md-content ng-controller="AdminTasksController as vm" md-whiteframe="4">
+  	<md-toolbar>
+	    <div class='md-toolbar-tools'>
+	      	<h2>Tâches</h2>
+	      	<span flex></span>
+	      	<md-button aria-label="Ajouter une Tâche" class="md-fab md-mini" ng-click="vm.dialogCreateTask($event)">
+	        	<md-tooltip md-direction="bottom">Ajouter</md-tooltip>
+	        	<md-icon>add</md-icon>
+	      	</md-button>
+	      	<md-button ng-if="vm.selectedTasks.length === 1" aria-label="Editer une tâche" class="md-fab md-mini" ng-click="vm.dialogEditTask($event)">
+	        	<md-tooltip md-direction="bottom">Editer</md-tooltip>
+	        	<md-icon>mode_edit</md-icon>
+	      	</md-button>
+	      	<md-button ng-if="vm.selectedTasks.length > 0" aria-label="Supprimer une tâche" class="md-fab md-mini" ng-click="vm.dialogDeleteTask($event)">
+	        	<md-tooltip md-direction="bottom">Supprimer</md-tooltip>
+	        	<md-icon>delete</md-icon>
+	      	</md-button>
+	    </div>
+  	</md-toolbar>
+	<md-list>
+		<md-list-item ng-repeat="task in vm.tasks" class="md-2-line compact" ng-click="vm.dialogTaskAssociative($event, task)">
+			  <md-checkbox aria-label="tâche sélectionnée" ng-click="vm.toggle(task, vm.selectedTasks)"></md-checkbox>
+	    	<div class="md-list-item-text" layout="column">
+	      		<h3>{{ task.name }}</h3>
+	    		<p>Délai : {{ task.taskDelay }}</p>
+	    	</div>
+		</md-list-item>
+	</md-list>
+</md-content>

@@ -1,0 +1,11 @@
+<div ng-controller="AdministrationController as vm" ng-cloak>
+  <md-content>
+    <md-tabs  md-dynamic-height md-border-bottom>
+      <md-tab ng-repeat="tab in vm.tabs" label="{{tab.name}}">
+        <md-content class="md-padding">
+          <div ng-include="tab.templateUrl"></div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

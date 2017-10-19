@@ -1,0 +1,29 @@
+<md-content ng-controller="AdminTrainIdController as vm" md-whiteframe="4">
+  	<md-toolbar>
+	    <div class='md-toolbar-tools'>
+	      	<h2>TrainId</h2>
+	      	<span flex></span>
+	      	<md-button aria-label="Ajouter une Tâche" class="md-fab md-mini" ng-click="vm.dialogCreateTrainId($event)">
+	        	<md-tooltip md-direction="bottom">Ajouter</md-tooltip>
+	        	<md-icon>add</md-icon>
+	      	</md-button>
+	      	<md-button ng-if="vm.selectedTrainIds.length === 1" aria-label="Editer un trainId" class="md-fab md-mini" ng-click="vm.dialogEditTrainId($event)">
+	        	<md-tooltip md-direction="bottom">Editer</md-tooltip>
+	        	<md-icon>mode_edit</md-icon>
+	      	</md-button>
+	      	<md-button ng-if="vm.selectedTrainIds.length > 0" aria-label="Supprimer un trainId" class="md-fab md-mini" ng-click="vm.dialogDeleteTrainId($event)">
+	        	<md-tooltip md-direction="bottom">Supprimer</md-tooltip>
+	        	<md-icon>delete</md-icon>
+	      	</md-button>
+	    </div>
+  	</md-toolbar>
+	<md-list>
+		<md-list-item ng-repeat="trainId in vm.trainIds" class="md-2-line compact" ng-click="vm.dialogAssociateTrainIdToUsers($event, trainId)">
+			  <md-checkbox aria-label="trainId séléctionnée" ng-click="vm.toggle(trainId, vm.selectedTrainIds)"></md-checkbox>
+	    	<div class="md-list-item-text">
+	      		<h3>{{ trainId.name }}</h3>
+	      		<p ng-if="trainId.isMD">Train de type MD</p>
+	    	</div>
+		</md-list-item>
+	</md-list>
+</md-content>
