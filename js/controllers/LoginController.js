@@ -3,7 +3,7 @@ GoperApp.controller('LoginController', ['$scope', '$state', 'LoginService', 'Toa
 	//Data
 	$scope.user = {};
 
-	//Method
+	//Methods
 	$scope.login = function (user) {
 		LoginService.checkLogin(user)
 			.then(function mySuccess(response) {
