@@ -61,7 +61,8 @@ GoperApp.config(function($stateProvider, $urlRouterProvider, $translateProvider,
                     templateUrl: 'views/Home.html' 
                 },
                 'toolbar@home': { 
-                    templateUrl: 'views/Toolbar.html'
+                    templateUrl: 'views/Toolbar.html',
+                    controller: "ToolbarController"
                 },
                 'sidenav@home': { 
                     templateUrl: 'views/Sidenav.html'
