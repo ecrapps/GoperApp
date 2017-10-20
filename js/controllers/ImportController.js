@@ -1,4 +1,4 @@
-GoperApp.controller('ImportController', ['$scope' , 'FileUploader', 'URL_TRAIN_API', function ($scope, FileUploader, URL_TRAIN_API) {
+GoperApp.controller('ImportController', ['$scope' , 'FileUploader', 'URL_TRAIN_API', 'RegisterService', function ($scope, FileUploader, URL_TRAIN_API, RegisterService) {
     
     var uploader = $scope.uploader = new FileUploader({
                 url: URL_TRAIN_API.URL_API+"import"
@@ -71,5 +71,8 @@ GoperApp.controller('ImportController', ['$scope' , 'FileUploader', 'URL_TRAIN_A
             };
 
             console.info('uploader', uploader);
+
+
+            $scope.user = RegisterService.getUserConnected();
 
 }]);

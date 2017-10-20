@@ -1,5 +1,5 @@
-GoperApp.controller('LoginController', ['$scope', '$state', 'LoginService', 'ToastService', '$log', 'RegisterService', 
-	function($scope, $state, LoginService, ToastService, $log, RegisterService) {
+GoperApp.controller('LoginController', ['$scope', '$state', 'LoginService', 'ToastService', '$log', 'IdSessionService', 
+	function($scope, $state, LoginService, ToastService, $log, IdSessionService) {
 	
 		//Data
 		$scope.user = {};
@@ -11,7 +11,7 @@ GoperApp.controller('LoginController', ['$scope', '$state', 'LoginService', 'Toa
 			        if (response.data.loginSucceed) {
 	        			$state.go("home");
 	        			ToastService.displayToast('Login correct !');
-	        			RegisterService.setUserConnected(response.data.user);
+	        			IdSessionService.setIdSession(response.data.idSession);
 	        		} else {
 	        			ToastService.displayToast("Identifiant ou mot de passe incorrect !");
 	        		}

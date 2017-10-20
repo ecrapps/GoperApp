@@ -1,6 +1,6 @@
-GoperApp.controller('ToolbarController', ['$scope', 'RegisterService', 
-	function($scope, RegisterService) {
+GoperApp.controller('ToolbarController', ['$scope', 
+	function($scope) {
 	
 		//Data
-		$scope.user = RegisterService.getUserConnected();
+		//$scope.user = RegisterService.getUserConnected();
 }]);
