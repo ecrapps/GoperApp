@@ -2,7 +2,7 @@
 	"DAILY_TASKS_TRAIN" : {
 		"FILTER_BY_SEARCH" : "Filtrer ...",
 		"TABLE" : {
-			"DEADLINE" : "Deadline",
+			"DEADLINE" : "Deadline2",
 			"DONE" : "Effectuée",
 			"TRAINID" : "TrainId",
 			"TASK" : "Tâche",

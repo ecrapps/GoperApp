@@ -31,5 +31,22 @@
 		"DAILY_TASK_TRAIN" : "Daily tasks",
 		"HISTORY" : "History",
 		"IMPORT" : "Import"
+	},
+	"TOOLBAR" : {
+		"LOGOUT" : "Logout",
+		"WELCOME" : "Welcome"
+	},
+	"TOAST" : {
+		"LOGIN_CORRECT" : "You are successfully logged in !",
+		"LOGIN_ERROR" : "Incorrect login. Please try again.",
+		"COMMENT_ADDED" : "Comment added successfully !",
+		"CHECKBOX_CLICK" : "Saved !"
+	},
+	"LOGIN" : {
+		"USERNAME" : "Username",
+		"PASSWORD" : "Password",
+		"BUTTON" : {
+			"SIGN_IN" : "Sign in"
+		}
 	}
 }
