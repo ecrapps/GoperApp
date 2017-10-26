@@ -32,5 +32,37 @@
 		"DAILY_TASK_TRAIN" : "Tâches du jour",
 		"HISTORY" : "Historique",
 		"IMPORT" : "Import"
+	},
+	"TOOLBAR" : {
+		"LOGOUT" : "Déconnexion",
+		"WELCOME" : "Bienvenue"
+	},
+	"TOAST" : {
+		"LOGIN_CORRECT" : "Vous êtes correctement identifié(e) !",
+		"LOGIN_ERROR" : "Identifiant ou mot de passe incorrects. Veuillez réessayer.",
+		"COMMENT_ADDED" : "Commentaire ajouté avec succès !",
+		"CHECKBOX_CLICK" : "Enregistré !"
+	},
+	"LOGIN" : {
+		"USERNAME" : "Identifiant",
+		"PASSWORD" : "Mot de passe",
+		"BUTTON" : {
+			"SIGN_IN" : "Se connecter"
+		},
+		"ERRORS" : {
+			"NO_USERNAME" : "Vous devez saisir un identifiant",
+			"NO_PASSWORD" : "Vous devez saisir un mot de passe"
+		}
+	},
+	"IMPORT" : {
+		"SELECT_FILE" : "Choisir un fichier",
+		"FILE_NAME" : "Nom du fichier",
+		"FILE_SIZE" : "Taille du fichier",
+		"PROGRESS" : "Avancée",
+		"ACTIONS" : "Actions",
+		"BUTTONS" : {
+			"UPLOAD" : "Envoyer",
+			"REMOVE" : "Supprimer"
+		}
 	}
 }

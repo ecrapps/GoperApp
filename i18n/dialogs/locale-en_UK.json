@@ -1,6 +1,7 @@
 {
 	"DAILY_TASKS_TRAIN" : {
-		"FILTER_BY_SEARCH" : "Search ...",
+		"FILTER_BY_SEARCH" : "Filter ...",
+		"FILTER_BY_CLIENT" : "Filter by client",
 		"TABLE" : {
 			"DEADLINE" : "Deadline",
 			"DONE" : "Done",
@@ -31,5 +32,37 @@
 		"DAILY_TASK_TRAIN" : "Daily tasks",
 		"HISTORY" : "History",
 		"IMPORT" : "Import"
+	},
+	"TOOLBAR" : {
+		"LOGOUT" : "Logout",
+		"WELCOME" : "Welcome"
+	},
+	"TOAST" : {
+		"LOGIN_CORRECT" : "You are successfully logged in !",
+		"LOGIN_ERROR" : "Incorrect login. Please try again.",
+		"COMMENT_ADDED" : "Comment added successfully !",
+		"CHECKBOX_CLICK" : "Saved !"
+	},
+	"LOGIN" : {
+		"USERNAME" : "Username",
+		"PASSWORD" : "Password",
+		"BUTTON" : {
+			"SIGN_IN" : "Sign in"
+		},
+		"ERRORS" : {
+			"NO_USERNAME" : "You have to type in a username",
+			"NO_PASSWORD" : "You have to type in a password"
+		}
+	},
+	"IMPORT" : {
+		"SELECT_FILE" : "Select a file",
+		"FILE_NAME" : "File name",
+		"FILE_SIZE" : "File size",
+		"PROGRESS" : "Progress",
+		"ACTIONS" : "Actions",
+		"BUTTONS" : {
+			"UPLOAD" : "Upload",
+			"REMOVE" : "Remove"
+		}
 	}
 }

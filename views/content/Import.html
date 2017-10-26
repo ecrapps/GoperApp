@@ -3,15 +3,15 @@
         <div class="row">
                 
                 <input type="file" nv-file-select="" uploader="uploader" " name="file" id="file" class="inputUploadHide" />
-                <label class="md-raised md-primary md-button md-ink-ripple" for="file">Select a file</label>
+                <label class="md-raised md-primary md-button md-ink-ripple" for="file" translate="IMPORT.SELECT_FILE">Select a file</label>
                 <br /><br />
                 <table class="table">
                     <thead>
                         <tr>
-                            <th width="50%">Name</th>
-                            <th ng-show="uploader.isHTML5">Size</th>
-                            <th ng-show="uploader.isHTML5">Progress</th>
-                            <th>Actions</th>
+                            <th width="50%" translate="IMPORT.FILE_NAME">Name</th>
+                            <th ng-show="uploader.isHTML5" translate="IMPORT.FILE_SIZE">Size</th>
+                            <th ng-show="uploader.isHTML5" translate="IMPORT.PROGRESS">Progress</th>
+                            <th translate="IMPORT.ACTIONS">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,8 +24,8 @@
                                 </md-progress-linear>
                             </td>
                             <td nowrap>
-                                <md-button class="md-raised md-primary" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">Upload</md-button>
-                                <md-button class="md-raised md-warn" ng-click="item.remove()">Remove</md-button>
+                                <md-button class="md-raised md-primary" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" translate="IMPORT.BUTTONS.UPLOAD">Upload</md-button>
+                                <md-button class="md-raised md-warn" ng-click="item.remove()" translate="IMPORT.BUTTONS.REMOVE">Remove</md-button>
                             </td>
                         </tr>
                     </tbody>

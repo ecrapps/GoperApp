@@ -59,8 +59,8 @@
                         </div>
 
                         <div flex="7">
-                            <md-button type="submit" class="md-fab" aria-label="Save comment" ng-if="createComment">
-                                <md-tooltip md-direction="bottom"><span translate="DAILY_TASKS_TRAIN.DIALOG.SUBMIT">Submit</span></md-tooltip>
+                            <md-button type="submit" class="md-fab" aria-label="{{ 'DAILY_TASKS_TRAIN.DIALOG.SUBMIT' | translate }}" ng-if="createComment">
+                                <md-tooltip md-direction="bottom">{{ 'DAILY_TASKS_TRAIN.DIALOG.SUBMIT' | translate }}</md-tooltip>
                                 <md-icon>send</md-icon>
                             </md-button>
                         </div>
@@ -70,8 +70,8 @@
                         <div flex>
                         </div>
                         <div flex="7">
-                            <md-button class="md-fab" aria-label="Add comment" ng-click="showCommentCreation()">
-                                <md-tooltip md-direction="bottom"><span translate="DAILY_TASKS_TRAIN.DIALOG.ADD">Add</span></md-tooltip>
+                            <md-button class="md-fab" aria-label="{{ 'DAILY_TASKS_TRAIN.DIALOG.ADD' | translate }}" ng-click="showCommentCreation()">
+                                <md-tooltip md-direction="bottom">{{ 'DAILY_TASKS_TRAIN.DIALOG.ADD' | translate }}</md-tooltip>
                                 <md-icon>add</md-icon>
                             </md-button>
                         </div>

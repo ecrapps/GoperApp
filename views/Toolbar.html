@@ -4,7 +4,7 @@
       <i style="color: white;" class="material-icons">dehaze</i>
     </md-button>
 
-    <h2 flex md-truncate>Welcome {{ user.userName }}</h2>
+    <h2 flex md-truncate>{{ 'TOOLBAR.WELCOME' | translate }} {{ user.userName }}</h2>
 
     <span flex></span>
 
@@ -33,6 +33,6 @@
         </md-menu-item> -->
       </md-menu-content>
     </md-menu>
-    <md-button ng-click="test()" class="md-warn">Déconnexion</md-button>
+    <md-button ng-click="test()" class="md-warn" translate="TOOLBAR.LOGOUT">LOGOUT</md-button>
   </div>
 </md-toolbar>

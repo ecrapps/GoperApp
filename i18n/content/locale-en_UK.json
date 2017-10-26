@@ -48,6 +48,21 @@
 		"PASSWORD" : "Password",
 		"BUTTON" : {
 			"SIGN_IN" : "Sign in"
+		},
+		"ERRORS" : {
+			"NO_USERNAME" : "You have to type in a username",
+			"NO_PASSWORD" : "You have to type in a password"
+		}
+	},
+	"IMPORT" : {
+		"SELECT_FILE" : "Select a file",
+		"FILE_NAME" : "File name",
+		"FILE_SIZE" : "File size",
+		"PROGRESS" : "Progress",
+		"ACTIONS" : "Actions",
+		"BUTTONS" : {
+			"UPLOAD" : "Upload",
+			"REMOVE" : "Remove"
 		}
 	}
 }

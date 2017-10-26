@@ -4,21 +4,20 @@
 	    <md-card-content>
 	      <form name="Form" ng-submit="login(user)">
 	      	<md-input-container class="md-block" flex-gt-sm>
-	          <label>Identifiant</label>
+	          <label translate="LOGIN.USERNAME">Username</label>
 	          <input ng-model="user.login" required autofocus>
 	          <div ng-messages="Form.login.$error" role="alert" multiple="">
-	            <div class="my-message" ng-message="required">Vous devez entrer un identifiant</div>
+	            <div class="my-message" ng-message="required" translate="LOGIN.ERRORS.NO_USERNAME">Vous devez entrer un identifiant</div>
 	          </div>
 	        </md-input-container>
 	        <md-input-container class="md-block">
-	          <label>Mot de passe </label>
+	          <label translate="LOGIN.PASSWORD">Password</label>
 	          <input type="password" ng-model="user.password" required>
 	          <div ng-messages="Form.password.$error" role="alert" multiple="">
-	            <div class="my-message" ng-message="required">Vous devez entrer un mot de passe</div>
-	            <div class="my-message" ng-message="md-maxlength">Trop long.</div>
+	            <div class="my-message" ng-message="required" translate="LOGIN.ERRORS.NO_PASSWORD">Vous devez entrer un mot de passe</div>
 	          </div>
 	        </md-input-container>
-	        <md-button type="submit" class="md-raised md-primary" ng-disabled="!Form.$valid" >&nbsp; Connexion &nbsp;</md-button>
+	        <md-button type="submit" class="md-raised md-primary" ng-disabled="!Form.$valid"  translate="LOGIN.BUTTON.SIGN_IN">&nbsp; Connection &nbsp;</md-button>
 	      </form>
 	    </md-card-content>
 	  </md-card>
