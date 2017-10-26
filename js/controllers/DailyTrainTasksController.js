@@ -223,14 +223,18 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 					content : newComment.message
 				}
 				
-				CommentService.saveNewComment(commentToCreate)
-					.then(function mySuccess(response) {
-						$scope.newComment.message = "";
-						ToastService.displayToast("Commentaire enregistré avec succès !");
-						$scope.refreshTask();
-				    }, function myError(response) {
-				        $log.error("saveNewComment failed");
-				    });
+				if (newComment.message != "") {
+					CommentService.saveNewComment(commentToCreate)
+						.then(function mySuccess(response) {
+							$scope.newComment.message = "";
+							ToastService.displayToast("Commentaire enregistré avec succès !");
+							$scope.refreshTask();
+					    }, function myError(response) {
+					        $log.error("saveNewComment failed");
+					    });
+				} else {
+					
+				}
 			};
 
 			$scope.showCommentCreation = function() {
