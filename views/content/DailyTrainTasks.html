@@ -1,10 +1,27 @@
 <div ng-controller="DailyTrainTasksController">
 	
 	<div layout="row">
-	  <div flex-offset="80"></div>
-	  <div flex>
-		<input placeholder="{{ 'DAILY_TASKS_TRAIN.FILTER_BY_SEARCH' | translate }}" class="filterInput" type="text" ng-model="filter" ng-change="onFilterChanged(filter)"/>
-	  </div>
+		<div layout="row">
+			<md-input-container class="filterByClientSelectBox">
+				<label translate="DAILY_TASKS_TRAIN.FILTER_BY_CLIENT">Filter by client</label>
+				<md-select ng-model="selectedClients"
+				           md-on-close="filterDailyTasksByClient(selectedClients)"
+				           data-md-container-class="selectFilterTermHeader"
+				           multiple>
+					<md-select-header class="select-header">
+						<span>Filter by client...</span>
+					</md-select-header>
+					<md-optgroup label="tabDistinctClients">
+						<md-option ng-value="client" ng-repeat="client in tabDistinctClients">{{client.name}}</md-option>
+					</md-optgroup>
+				</md-select>
+			</md-input-container>
+	    </div>
+
+		<div flex-offset="70"></div>
+		<div flex>
+			<input placeholder="{{ 'DAILY_TASKS_TRAIN.FILTER_BY_SEARCH' | translate }}" class="filterInput" type="text" ng-model="filter" ng-change="onFilterChanged(filter)"/>
+		</div>
 	</div>
 	
     <div style="height: 100%; padding-top: 26px; box-sizing: border-box;">

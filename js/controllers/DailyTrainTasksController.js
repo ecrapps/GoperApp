@@ -6,6 +6,7 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 	    $scope.createComment = false;
 	    $scope.date = new Date();
 	    $scope.displayComments = displayComments;
+	    $scope.filterDailyTasksByClient = filterDailyTasksByClient;
 	    $scope.getDailyTasks = getDailyTasks;
 	    $scope.onFilterChanged = onFilterChanged;
 	    $scope.openMenu = openMenu;
@@ -13,10 +14,11 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 	    $scope.sortType = 'Deadline';
 	    $scope.updateTaskCheck = updateTaskCheck;
         var url_api = URL_TRAIN_API.URL_API;
+        var dailyTasksNotFiltered;
 
    		// ag-grid data
 	    var columnDefs = [
-		   {headerName: "Done ?", field: "checked", width: 150, cellRenderer: checkedCellRendererFunc, suppressSizeToFit: true},
+		   {headerName: "", field: "checked", width: 65, cellRenderer: checkedCellRendererFunc, suppressSizeToFit: true},
 		   {headerName: "Deadline", field: "deadline"},
 		   {headerName: "TrainId", field: "trainId"},
 		   {headerName: "Task", field: "taskname"},
@@ -93,10 +95,38 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 					  	return obj;
 					});
 
-					$scope.gridOptions.api.setRowData(response.data);
+					dailyTasksNotFiltered = response.data;
+					$scope.dailyTasks = response.data;
+
+					var tabClients = response.data.map(function(el){return el.client});
+					var tabDistinctClients = [];
+
+					for (var i = 0; i < tabClients.length; i++) {
+						var j = tabDistinctClients.findIndex(x => x.id == tabClients[i].id);
+						if ((j <= -1) && (tabClients[i].name)) {
+							tabDistinctClients.push(tabClients[i]);
+						}
+					}
+
+					$scope.tabDistinctClients = tabDistinctClients;
+					$scope.gridOptions.api.setRowData($scope.dailyTasks);
 			    }, function myError(response) {
 			        $log.error("Get dailyTasks failed");
 			    });
+	    }
+
+	    function filterDailyTasksByClient(selectedClients) {
+	    	if (selectedClients) {
+	    		var selectedIdCients = selectedClients.map(function(el){return el.id});
+	    	} else {
+	    		var selectedIdCients = [];
+	    	}
+	    	
+			$scope.dailyTasks = dailyTasksNotFiltered.filter(function(el) {
+				return selectedIdCients.length > 0 ? selectedIdCients.includes(el.idClient) : true;
+			});
+
+			$scope.gridOptions.api.setRowData($scope.dailyTasks);
 	    }
 
 	    function openMenu ($mdOpenMenu, ev) {

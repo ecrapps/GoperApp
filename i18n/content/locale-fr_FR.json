@@ -1,6 +1,7 @@
 {
 	"DAILY_TASKS_TRAIN" : {
 		"FILTER_BY_SEARCH" : "Filtrer ...",
+		"FILTER_BY_CLIENT" : "Filtrer par client",
 		"TABLE" : {
 			"DEADLINE" : "Deadline2",
 			"DONE" : "Effectuée",
