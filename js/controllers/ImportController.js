@@ -1,4 +1,11 @@
 GoperApp.controller('ImportController', ['$scope' , 'FileUploader', 'URL_TRAIN_API', function ($scope, FileUploader, URL_TRAIN_API) {
+
+    $scope.fileSelected = false;
+    $scope.setFileSelected = setFileSelected;
+
+    function setFileSelected() {
+        $scope.fileSelected = true;
+    }
     
     var uploader = $scope.uploader = new FileUploader({
                 url: URL_TRAIN_API.URL_API+"import"
@@ -41,6 +48,7 @@ GoperApp.controller('ImportController', ['$scope' , 'FileUploader', 'URL_TRAIN_A
             };
             uploader.onAfterAddingFile = function(fileItem) {
                 console.info('onAfterAddingFile', fileItem);
+                setFileSelected();
             };
             uploader.onAfterAddingAll = function(addedFileItems) {
                 console.info('onAfterAddingAll', addedFileItems);

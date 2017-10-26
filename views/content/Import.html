@@ -2,13 +2,13 @@
 
         <div class="row">
                 
-                <input type="file" nv-file-select="" uploader="uploader" " name="file" id="file" class="inputUploadHide" />
+                <input type="file" nv-file-select="" uploader="uploader" name="file" id="file" class="inputUploadHide" />
                 <label class="md-raised md-primary md-button md-ink-ripple" for="file" translate="IMPORT.SELECT_FILE">Select a file</label>
-                <br /><br />
-                <table class="table">
+                
+                <table class="table" id="importTable" ng-if="fileSelected">
                     <thead>
                         <tr>
-                            <th width="50%" translate="IMPORT.FILE_NAME">Name</th>
+                            <th id="fileName" translate="IMPORT.FILE_NAME">Name</th>
                             <th ng-show="uploader.isHTML5" translate="IMPORT.FILE_SIZE">Size</th>
                             <th ng-show="uploader.isHTML5" translate="IMPORT.PROGRESS">Progress</th>
                             <th translate="IMPORT.ACTIONS">Actions</th>

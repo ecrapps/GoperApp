@@ -78,3 +78,17 @@ body {
     max-height: 240px;
 }
 /* END Filter term on select input */
+
+/* Import page */
+#importTable {
+    width: 100%;
+    margin-top: 25px;
+}
+
+#importTable th, td {
+    text-align: center;
+}
+
+#importTable #fileName {
+    width: 30%;
+}
