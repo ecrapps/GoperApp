@@ -1,47 +1,31 @@
 <div ng-controller="HistoryController">
-	<md-content flex layout-padding class="table-content">
-		<md-card style="margin:0px">
-	        <md-input-container style="margin:15px;">
-	            <label translate="DAILY_TASKS_TRAIN.FILTER_BY_SEARCH">Filter by tasks</label>
-	            <input type="text" ng-model="querySearch">
-	        </md-input-container>
-	    </md-card>
-	    <div class="table-responsive-vertical shadow-z-1">
-	    	<table st-table="tasks" class="table table-mc-light-blue">
-	    		<thead>
-	    			<tr>
-	    				<th translate="DAILY_TASKS_TRAIN.TABLE.DEADLINE">Deadline</th>
-	    				<th translate="DAILY_TASKS_TRAIN.TABLE.DONE">Done</th>
-	    				<th translate="DAILY_TASKS_TRAIN.TABLE.TRAINID">TrainID</th>
-	    				<th translate="DAILY_TASKS_TRAIN.TABLE.TASK">Task</th>
-	    				<th translate="DAILY_TASKS_TRAIN.TABLE.COMMENT">Comments</th>
-	    				<th translate="DAILY_TASKS_TRAIN.TABLE.USER_IN_CHARGE">User in charge</th>
-	    			</tr>
-	    		</thead>
-	    	</table>
+	
+	<div layout="row">
+		<div layout="row">
+			<md-input-container class="filterByClientSelectBox">
+				<label translate="DAILY_TASKS_TRAIN.FILTER_BY_CLIENT">Filter by client</label>
+				<md-select ng-model="selectedClients"
+				           md-on-close="filterDailyTasksByClient(selectedClients)"
+				           data-md-container-class="selectFilterTermHeader"
+				           multiple>
+					<md-select-header class="select-header">
+						<span>Filter by client...</span>
+					</md-select-header>
+					<md-optgroup label="tabDistinctClients">
+						<md-option ng-value="client" ng-repeat="client in tabDistinctClients">{{client.name}}</md-option>
+					</md-optgroup>
+				</md-select>
+			</md-input-container>
 	    </div>
-		<div class="table-responsive-vertical shadow-z-1">
-			<table st-table="tasks" class="table table-mc-light-blue historyTable">
-				<tbody class="historyTable">
-					<tr class="historyTable" ng-repeat="task in tasks | filter:querySearch">
-						<td class="historyTable" data-title="Deadline">{{::task.deadline | date : "HH:mm"}}</td>
-						<td class="historyTable" data-title="Task done ?">
-						  <md-checkbox ng-disabled="true" ng-model="task.checked" aria-label="Checkbox 1"></md-checkbox>
-						</td>
-						<td class="historyTable" data-title="Abreviation">{{::task.train.abreviation}}</td>
-						<td class="historyTable" data-title="Task name">{{::task.task.name}}</td>
-						<td class="historyTable" data-title="Comments">
-						  	<md-button ng-if="task.task.comments.length > 0" md-no-ink class="md-primary" ng-click="showAdvanced(task, $event)" translate="DAILY_TASKS_TRAIN.TABLE.COMMENT_ACTION">Comment</md-button>
-						  	<md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-					          	<span translate="DAILY_TASKS_TRAIN.TABLE.NO_COMMENT">No comment</span>
-					        </md-card>
-						</td>
-						<td class="historyTable" data-title="User in charge">
-							{{task.userInCharge.username}}
-						</td>
-					</tr>
-				</tbody>
-			</table>
+
+		<div flex-offset="70"></div>
+		<div flex>
+			<input placeholder="{{ 'DAILY_TASKS_TRAIN.FILTER_BY_SEARCH' | translate }}" class="filterInput" type="text" ng-model="filter" ng-change="onFilterChanged(filter)"/>
 		</div>
-	</md-content>
+	</div>
+	
+    <div style="height: 100%; padding-top: 26px; box-sizing: border-box;">
+        <div id="myGrid" ag-grid="gridOptions" class="ag-theme-material" style="height: 100%;"></div>
+    </div>
+
 </div>
