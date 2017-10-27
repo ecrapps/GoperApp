@@ -35,7 +35,13 @@
 	},
 	"TOOLBAR" : {
 		"LOGOUT" : "Logout",
-		"WELCOME" : "Welcome"
+		"WELCOME" : "Welcome",
+		"DIALOG" : {
+			"TITLE" : "Logout",
+			"LOGOUT_CONFIRM_MESSAGE" : "Are you sure you want to logout ?",
+			"CONFIRM_BUTTON" : "Ok",
+			"CANCEL_CONFIRM" : "Cancel"
+		}
 	},
 	"TOAST" : {
 		"LOGIN_CORRECT" : "You are successfully logged in !",

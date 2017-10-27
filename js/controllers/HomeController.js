@@ -1,4 +1,4 @@
-GoperApp.controller('HomeController', ['$scope', '$mdSidenav', function($scope, $mdSidenav) {	
+GoperApp.controller('HomeController', ['$scope', '$mdSidenav', '$state', function($scope, $mdSidenav, $state) {	
 
 	$scope.toggleLeft = buildToggler('left');
 
@@ -30,4 +30,6 @@ GoperApp.controller('HomeController', ['$scope', '$mdSidenav', function($scope, 
             state : 'home.administration'
     	}
     ];
+
+    $state.go('home.dailyTrainTasks');
 }]);

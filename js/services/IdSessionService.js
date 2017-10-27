@@ -4,14 +4,19 @@ GoperApp.factory('IdSessionService',
 
 		fct.setIdSession = setIdSession;
 		fct.getIdSession = getIdSession;
-
+		fct.destroySession = destroySession;
+		
 		function setIdSession (idSession) {
-			localStorage.setItem('idSession', idSession);
+			localStorage.setItem('idSession', JSON.stringify(idSession));
 		};
 
 		function getIdSession () {
-			return localStorage.getItem('idSession');
+			return JSON.parse(localStorage.getItem('idSession'));
 		};
+
+		function destroySession(){
+			localStorage.removeItem('idSession'); 
+		}
 
 		return fct;
 	}

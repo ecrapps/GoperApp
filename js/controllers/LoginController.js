@@ -11,7 +11,7 @@ GoperApp.controller('LoginController', ['$scope', '$state', 'LoginService', 'Toa
 			        if (response.data.loginSucceed) {
 	        			$state.go("home");
 	        			ToastService.displayToast('Login correct !');
-	        			IdSessionService.setIdSession(response.data.idSession);
+	        			IdSessionService.setIdSession(response.data.user);
 	        		} else {
 	        			ToastService.displayToast("Identifiant ou mot de passe incorrect !");
 	        		}

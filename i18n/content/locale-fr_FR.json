@@ -35,7 +35,13 @@
 	},
 	"TOOLBAR" : {
 		"LOGOUT" : "Déconnexion",
-		"WELCOME" : "Bienvenue"
+		"WELCOME" : "Bienvenue",
+		"DIALOG" : {
+			"TITLE" : "Déconnexion",
+			"LOGOUT_CONFIRM_MESSAGE" : "Êtes vous sûr de vouloir vous déconnecter ?",
+			"CONFIRM_BUTTON" : "Ok",
+			"CANCEL_CONFIRM" : "Annuler"
+		}
 	},
 	"TOAST" : {
 		"LOGIN_CORRECT" : "Vous êtes correctement identifié(e) !",
