@@ -18,7 +18,7 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 
    		// ag-grid data
 	    var columnDefs = [
-		   {headerName: "", field: "checked", width: 65, cellRenderer: checkedCellRendererFunc, suppressSizeToFit: true},
+		   {headerName: "", field: "checked", width: 80, cellRenderer: checkedCellRendererFunc, suppressSizeToFit: true},
 		   {headerName: "Deadline", field: "deadline", cellRenderer: deadlineCellRendererFunc},
 		   {headerName: "TrainId", field: "trainId"},
 		   {headerName: "Task", field: "taskname"},
