@@ -23,11 +23,10 @@
                     </md-list-item>
                   </md-list>
 
-                  <p ng-if="!clickedComment && !createComment">
-                    <span translate="DAILY_TASKS_TRAIN.DIALOG.COMMENTS_EMPTY_1">There are no comment for this task yet.</span>
-                    <br />
-                    <span translate="DAILY_TASKS_TRAIN.DIALOG.COMMENTS_EMPTY_2">Click the Add button to add a comment.</span>
-                  </p>
+                  <div ng-if="!clickedComment && !createComment" class="noCommentMsg">
+                    <div translate="DAILY_TASKS_TRAIN.DIALOG.COMMENTS_EMPTY_1">There are no comment for this task yet.</div>
+                    <div translate="DAILY_TASKS_TRAIN.DIALOG.COMMENTS_EMPTY_2">Click the Add button to add a comment.</div>
+                  </div>
                 </div>
 
                 <div flex ng-if="clickedComment"> <!-- Right -->

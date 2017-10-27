@@ -26,6 +26,11 @@ body {
     overflow: auto;
 }
 
+.noCommentMsg {
+    text-align: center;
+    margin-top: 30px;
+}
+
 .md-button.smallCommentsButton {
     min-width: 10px;
 }
