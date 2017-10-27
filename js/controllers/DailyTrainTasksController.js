@@ -19,7 +19,7 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
    		// ag-grid data
 	    var columnDefs = [
 		   {headerName: "", field: "checked", width: 65, cellRenderer: checkedCellRendererFunc, suppressSizeToFit: true},
-		   {headerName: "Deadline", field: "deadline"},
+		   {headerName: "Deadline", field: "deadline", cellRenderer: deadlineCellRendererFunc},
 		   {headerName: "TrainId", field: "trainId"},
 		   {headerName: "Task", field: "taskname"},
 		   {headerName: "Comments", field: "comments", cellRenderer: commentsCellRendererFunc}
@@ -35,7 +35,7 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 		    rowClassRules: {
 		        // row style function
 		        'deadline-passed': function(params) {
-		            return params.data.idTask === 4;
+		            return moment(params.data.deadline).isBefore(moment());
 		       	},
 		    },
 		    onGridReady: function(params) {
@@ -162,6 +162,10 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 								'</span>';
 
 			return commentCell;
+		}
+
+		function deadlineCellRendererFunc() {
+			return "{{ data.deadline | amDateFormat:'DD/MM/YYYY - HH:mm' }}";
 		}
 
 	    function onFilterChanged(value) {

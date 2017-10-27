@@ -8,7 +8,8 @@ var GoperApp = angular.module('GoperApp',
         'angularFileUpload',
         'pascalprecht.translate',
         'agGrid',
-        'truncate'
+        'truncate',
+        'angularMoment'
     ]
 );
 

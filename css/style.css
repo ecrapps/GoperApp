@@ -26,6 +26,11 @@ body {
     overflow: auto;
 }
 
+.noCommentMsg {
+    text-align: center;
+    margin-top: 30px;
+}
+
 .md-button.smallCommentsButton {
     min-width: 10px;
 }
@@ -82,7 +87,7 @@ body {
 /* Import page */
 #importTable {
     width: 100%;
-    margin-top: 25px;
+    margin-top: 35px;
 }
 
 #importTable th, td {
