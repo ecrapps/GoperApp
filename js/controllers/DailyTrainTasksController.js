@@ -19,7 +19,11 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
    		// ag-grid data
 	    var columnDefs = [
 		   {headerName: "", field: "checked", width: 80, cellRenderer: checkedCellRendererFunc, suppressSizeToFit: true},
-		   {headerName: "Deadline", field: "deadline", cellRenderer: deadlineCellRendererFunc},
+		   {headerName: "Deadline", 
+		   		 field: "deadline", 
+		   		 cellRenderer: deadlineCellRendererFunc, 
+		   		 cellClass: function(params) { return (moment(params.data.deadline).isBefore(moment())?'deadline-passed':''); }
+		   },
 		   {headerName: "TrainId", field: "trainId"},
 		   {headerName: "Task", field: "taskname"},
 		   {headerName: "Comments", field: "comments", cellRenderer: commentsCellRendererFunc}
@@ -32,12 +36,6 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 	        angularCompileRows: true,
 	        enableColResize : true,
 	        enableSorting : true,
-		    rowClassRules: {
-		        // row style function
-		        'deadline-passed': function(params) {
-		            return moment(params.data.deadline).isBefore(moment());
-		       	},
-		    },
 		    onGridReady: function(params) {
 		    	//using setTimeout because 
 		    	//gridReady get's called before data is bound
@@ -150,10 +148,10 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 
 		function commentsCellRendererFunc() {
 			var commentCell = 	'<span ng-if="data.comments[0]">' +
-									'{{ data.comments[0].content | characters : 10 }}' +
 									'<md-button md-no-ink class="md-primary smallCommentsButton" ng-click="displayComments(data, $event)">' +
 										'<i class="material-icons">visibility</i>'+ 
 									'</md-button>' +
+									'{{ data.comments[0].content | characters : 10 }}' +
 								'</span>' +
 								'<span ng-if="!data.comments[0]">' + 
 									'<md-button md-no-ink class="md-primary smallCommentsButton" ng-click="displayComments(data, $event)">' +
@@ -175,7 +173,7 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 
 		$scope.getDailyTasks();
 		
-		function CommentsDialogController($scope, $mdDialog, task, CommentService, TaskService) {
+		function CommentsDialogController($scope, $mdDialog, task, CommentService, TaskService, IdSessionService) {
 			$scope.createComment = false;
 			$scope.task = task;
 			$scope.newComment = {
@@ -221,23 +219,21 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 			$scope.displayComment($scope.task.comments[0]);
 
 			$scope.saveNewComment = function(newComment) {
-				var commentToCreate = {
+				var newComment = {
 					idTask : task.id,
-					author : '1',
-					content : newComment.message
+					idAuthor : IdSessionService.getIdSession().idUser,
+					content : newComment.content
 				}
-				
-				if (newComment.message != "") {
-					CommentService.saveNewComment(commentToCreate)
+
+				if (newComment.content != "") {
+					CommentService.saveNewComment(newComment)
 						.then(function mySuccess(response) {
-							$scope.newComment.message = "";
+							$scope.newComment.content = "";
 							ToastService.displayToast("Commentaire enregistré avec succès !");
 							$scope.refreshTask();
 					    }, function myError(response) {
 					        $log.error("saveNewComment failed");
 					    });
-				} else {
-					
 				}
 			};
 

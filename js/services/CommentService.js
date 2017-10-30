@@ -8,7 +8,7 @@ GoperApp.factory('CommentService', ['$http', 'URL_TRAIN_API', function($http, UR
 		var data = {
 			// Envoyer les données nécessaires
 			idTask: newComment.idTask,
-			author: newComment.author,
+			idAuthor: newComment.idAuthor,
 			content: newComment.content
 		};
 

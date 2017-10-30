@@ -35,7 +35,7 @@
                           <md-list-item class="md-3-line">
                             <div class="md-list-item-text" layout="column">
                               <h3><span translate="DAILY_TASKS_TRAIN.DIALOG.CREATED_BY">Created by</span> {{clickedComment.author}}</h3>
-                              <h4><span translate="DAILY_TASKS_TRAIN.DIALOG.DATE">Date : </span> {{clickedComment.date | date: "dd.mm.yyyy HH:mm"}}</h4>
+                              <h4><span translate="DAILY_TASKS_TRAIN.DIALOG.DATE">Date : </span> {{ clickedComment.date | amDateFormat:'DD/MM/YYYY - HH:mm' }}</h4>
                               <p>"{{clickedComment.content}}"</p>
                             </div>
                           </md-list-item>
@@ -53,7 +53,7 @@
                         <div flex>
                             <md-input-container class="md-block" ng-if="createComment">
                                 <label translate="DAILY_TASKS_TRAIN.DIALOG.ADD_NEW_COMMENT">Add new comment</label>
-                                <input aria-label="Add new comment" ng-model="newComment.message" autofocus />
+                                <input aria-label="Add new comment" ng-model="newComment.content" autofocus />
                             </md-input-container>
                         </div>
 

@@ -33,6 +33,7 @@ body {
 
 .md-button.smallCommentsButton {
     min-width: 10px;
+    opacity: 0;
 }
 
 /* Page Import */
@@ -47,12 +48,22 @@ body {
 }
 
 /* ag-grid */
-.ag-theme-material .deadline-passed {
-    background-color: #fff2f2;
-}
-
 .mdCheckboxAgGrid{
     margin-top: 12px;
+}
+
+.ag-theme-material .ag-row:hover .md-button.smallCommentsButton {
+    opacity: 1;
+}
+
+.deadline-passed {
+    background-color: #ff5252;
+    color: white;
+}
+
+.ag-row-hover .deadline-passed {
+    background-color: #EEEEEE;
+    color: black;
 }
 
 /* Filter term on select input */

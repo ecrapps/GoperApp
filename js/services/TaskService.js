@@ -10,6 +10,13 @@ GoperApp.factory('TaskService', ['$http', 'URL_TRAIN_API', function($http, URL_T
 	    });
 	}
 
+	factory.getHistoryDailyTasks = function() {
+		return $http({
+        	method : "GET",
+        	url : url_api + "getHistoryDailyTasks" 
+	    });
+	}
+
 	factory.getTasks = function() {
 		return $http({
         	method : "GET",
