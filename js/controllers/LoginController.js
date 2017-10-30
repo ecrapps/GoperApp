@@ -9,7 +9,7 @@ GoperApp.controller('LoginController', ['$scope', '$state', 'LoginService', 'Toa
 			LoginService.checkLogin(user)
 				.then(function mySuccess(response) {
 			        if (response.data.loginSucceed) {
-	        			$state.go("home");
+	        			$state.go("home.dailyTrainTasks");
 	        			ToastService.displayToast('Login correct !');
 	        			IdSessionService.setIdSession(response.data.user);
 	        		} else {
