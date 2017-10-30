@@ -94,7 +94,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 					});
 
 					dailyTasksNotFiltered = response.data;
-					$scope.getHistoryDailyTasks = response.data;
+					$scope.historyDailyTasks = response.data;
 
 					var tabClients = response.data.map(function(el){return el.client});
 					var tabDistinctClients = [];
@@ -107,7 +107,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 					}
 
 					$scope.tabDistinctClients = tabDistinctClients;
-					$scope.gridOptions.api.setRowData($scope.getHistoryDailyTasks);
+					$scope.gridOptions.api.setRowData($scope.historyDailyTasks);
 			    }, function myError(response) {
 			        $log.error("Get getHistoryDailyTasks failed");
 			    });
@@ -120,11 +120,11 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 	    		var selectedIdCients = [];
 	    	}
 	    	
-			$scope.getHistoryDailyTasks = dailyTasksNotFiltered.filter(function(el) {
+			$scope.historyDailyTasks = dailyTasksNotFiltered.filter(function(el) {
 				return selectedIdCients.length > 0 ? selectedIdCients.includes(el.idClient) : true;
 			});
 
-			$scope.gridOptions.api.setRowData($scope.getHistoryDailyTasks);
+			$scope.gridOptions.api.setRowData($scope.historyDailyTasks);
 	    }
 
 	    function openMenu ($mdOpenMenu, ev) {
