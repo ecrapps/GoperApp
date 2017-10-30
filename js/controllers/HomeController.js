@@ -31,5 +31,7 @@ GoperApp.controller('HomeController', ['$scope', '$mdSidenav', '$state', functio
     	}
     ];
 
-    $state.go('home.dailyTrainTasks');
+    if($state.current.name === "home"){
+        $state.go('home.dailyTrainTasks');
+    }
 }]);
