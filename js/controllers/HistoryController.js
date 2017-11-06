@@ -7,7 +7,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 	    $scope.date = new Date();
 	    $scope.displayComments = displayComments;
 	    $scope.filterDailyTasksByClient = filterDailyTasksByClient;
-	    $scope.getHistoryDailyTasks = getHistoryDailyTasks;
+	    $scope.getDailyTasks = getDailyTasks;
 	    $scope.onFilterChanged = onFilterChanged;
 	    $scope.openMenu = openMenu;
 	    $scope.sortReverse = false;
@@ -70,12 +70,12 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 			  // Dialog validated
 			}, function() {
 			  // Dialog cancelled
-			  $scope.getHistoryDailyTasks();
+			  $scope.getDailyTasks();
 			});
 		}
 
-	    function getHistoryDailyTasks() {
-	    	TaskService.getHistoryDailyTasks()
+	    function getDailyTasks() {
+	    	TaskService.getDailyTasks()
 				.then(function mySuccess(response) {
 					// We change the checked value from 1 to true and 0 to false
 					// To be able to use md-checkbox
@@ -89,7 +89,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 					});
 
 					dailyTasksNotFiltered = response.data;
-					$scope.historyDailyTasks = response.data;
+					$scope.dailyTasks = response.data;
 
 					var tabClients = response.data.map(function(el){return el.client});
 					var tabDistinctClients = [];
@@ -102,9 +102,9 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 					}
 
 					$scope.tabDistinctClients = tabDistinctClients;
-					$scope.gridOptions.api.setRowData($scope.historyDailyTasks);
+					$scope.gridOptions.api.setRowData($scope.dailyTasks);
 			    }, function myError(response) {
-			        $log.error("Get getHistoryDailyTasks failed");
+			        $log.error("Get dailyTasks failed");
 			    });
 	    }
 
@@ -115,11 +115,11 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 	    		var selectedIdCients = [];
 	    	}
 	    	
-			$scope.historyDailyTasks = dailyTasksNotFiltered.filter(function(el) {
+			$scope.dailyTasks = dailyTasksNotFiltered.filter(function(el) {
 				return selectedIdCients.length > 0 ? selectedIdCients.includes(el.idClient) : true;
 			});
 
-			$scope.gridOptions.api.setRowData($scope.historyDailyTasks);
+			$scope.gridOptions.api.setRowData($scope.dailyTasks);
 	    }
 
 	    function openMenu ($mdOpenMenu, ev) {
@@ -130,7 +130,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 	    	TaskService.updateTaskCheck(task)
 				.then(function mySuccess(response) {
 					ToastService.displayToast("Enregistré !");
-					$scope.getHistoryDailyTasks();
+					$scope.getDailyTasks();
 			    }, function myError(response) {
 			        $log.error("updateTaskCheck failed when trying");
 			    });
@@ -166,9 +166,9 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 		}
 		// end ag-grid methods
 
-		$scope.getHistoryDailyTasks();
+		$scope.getDailyTasks();
 		
-		function CommentsDialogController($scope, $mdDialog, task, CommentService, TaskService) {
+		function CommentsDialogController($scope, $mdDialog, task, CommentService, TaskService, IdSessionService) {
 			$scope.createComment = false;
 			$scope.task = task;
 			$scope.newComment = {
@@ -214,23 +214,21 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 			$scope.displayComment($scope.task.comments[0]);
 
 			$scope.saveNewComment = function(newComment) {
-				var commentToCreate = {
+				var newComment = {
 					idTask : task.id,
-					author : '1',
-					content : newComment.message
+					idAuthor : IdSessionService.getIdSession().idUser,
+					content : newComment.content
 				}
-				
-				if (newComment.message != "") {
-					CommentService.saveNewComment(commentToCreate)
+
+				if (newComment.content != "") {
+					CommentService.saveNewComment(newComment)
 						.then(function mySuccess(response) {
-							$scope.newComment.message = "";
+							$scope.newComment.content = "";
 							ToastService.displayToast("Commentaire enregistré avec succès !");
 							$scope.refreshTask();
 					    }, function myError(response) {
 					        $log.error("saveNewComment failed");
 					    });
-				} else {
-					
 				}
 			};
 
