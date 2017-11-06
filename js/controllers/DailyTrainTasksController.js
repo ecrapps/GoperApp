@@ -11,26 +11,25 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 	    $scope.onFilterChanged = onFilterChanged;
 	    $scope.openMenu = openMenu;
 	    $scope.sortReverse = false;
-	    $scope.sortType = 'Deadline';
+	    $scope.sortType = 'Délai';
 	    $scope.updateTaskCheck = updateTaskCheck;
         var url_api = URL_TRAIN_API.URL_API;
         var dailyTasksNotFiltered;
 
    		// ag-grid data
 	    var columnDefs = [
-		   {headerName: "", field: "checked", width: 80, cellRenderer: checkedCellRendererFunc, suppressSizeToFit: true},
-		   {headerName: "Deadline", 
+		   {headerName: "", field: "checked", width: 80, cellRenderer: checkedCellRendererFunc, suppressSizeToFit: true, suppressFilter: true},
+		   {headerName: "Délai", 
 		   		 field: "deadline", 
 		   		 cellRenderer: deadlineCellRendererFunc, 
 		   		 cellClass: function(params) { return (moment(params.data.deadline).isBefore(moment())?'deadline-passed':''); }
 		   },
-		   {headerName: "TrainId", field: "trainId"},
-		   {headerName: "Task", field: "taskname"},
-		   {headerName: "Comments", field: "comments", cellRenderer: commentsCellRendererFunc}
+		   {headerName: "Train Id", field: "trainId"},
+		   {headerName: "Tâche", field: "taskname"},
+		   {headerName: "Commentaires", field: "comments", cellRenderer: commentsCellRendererFunc}
 		];
 
 		$scope.gridOptions = {
-	    	enableFilter: true,
 	        columnDefs: columnDefs,
 	        rowData: null,
 	        angularCompileRows: true,
