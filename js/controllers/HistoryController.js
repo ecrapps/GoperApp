@@ -1,5 +1,5 @@
-GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskService', 'CommentService', '$element', '$timeout', '$log', 'ToastService', 'URL_TRAIN_API',
-	function ($scope, $http, $mdDialog, TaskService, CommentService, $element, $timeout, $log, ToastService, URL_TRAIN_API) {
+GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskService', 'CommentService', '$element', '$timeout', '$log', 'ToastService', 'URL_TRAIN_API', 'IdSessionService',
+	function ($scope, $http, $mdDialog, TaskService, CommentService, $element, $timeout, $log, ToastService, URL_TRAIN_API, IdSessionService) {
 
 	    // DATAS
 	    $scope.addComment = addComment;
@@ -7,7 +7,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 	    $scope.date = new Date();
 	    $scope.displayComments = displayComments;
 	    $scope.filterDailyTasksByClient = filterDailyTasksByClient;
-	    $scope.getDailyTasks = getDailyTasks;
+	    $scope.getHistoryDailyTasks = getHistoryDailyTasks;
 	    $scope.onFilterChanged = onFilterChanged;
 	    $scope.openMenu = openMenu;
 	    $scope.sortReverse = false;
@@ -15,6 +15,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 	    $scope.updateTaskCheck = updateTaskCheck;
         var url_api = URL_TRAIN_API.URL_API;
         var dailyTasksNotFiltered;
+        var idSession = IdSessionService.getIdSession();
 
    		// ag-grid data
 	    var columnDefs = [
@@ -70,12 +71,12 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 			  // Dialog validated
 			}, function() {
 			  // Dialog cancelled
-			  $scope.getDailyTasks();
+			  $scope.getHistoryDailyTasks(idSession.idUser);
 			});
 		}
 
-	    function getDailyTasks() {
-	    	TaskService.getDailyTasks()
+	    function getHistoryDailyTasks(idUser) {
+	    	TaskService.getHistoryDailyTasks(idUser)
 				.then(function mySuccess(response) {
 					// We change the checked value from 1 to true and 0 to false
 					// To be able to use md-checkbox
@@ -130,7 +131,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 	    	TaskService.updateTaskCheck(task)
 				.then(function mySuccess(response) {
 					ToastService.displayToast("Enregistré !");
-					$scope.getDailyTasks();
+					$scope.getHistoryDailyTasks(idSession.idUser);
 			    }, function myError(response) {
 			        $log.error("updateTaskCheck failed when trying");
 			    });
@@ -166,7 +167,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 		}
 		// end ag-grid methods
 
-		$scope.getDailyTasks();
+		$scope.getHistoryDailyTasks(idSession.idUser);
 		
 		function CommentsDialogController($scope, $mdDialog, task, CommentService, TaskService, IdSessionService) {
 			$scope.createComment = false;

@@ -3,17 +3,27 @@ GoperApp.factory('TaskService', ['$http', 'URL_TRAIN_API', function($http, URL_T
 	var url_api = URL_TRAIN_API.URL_API;
 	var factory = {};
 
-	factory.getDailyTasks = function() {
+	factory.getDailyTasks = function(idUser) {
+		var data = {
+			idUser : idUser
+		}
+
 		return $http({
         	method : "GET",
-        	url : url_api + "getDailyTasks" 
+        	url : url_api + "getDailyTasks",
+        	params : data 
 	    });
 	}
 
-	factory.getHistoryDailyTasks = function() {
+	factory.getHistoryDailyTasks = function(idUser) {
+		var data = {
+			idUser : idUser
+		}
+		
 		return $http({
         	method : "GET",
-        	url : url_api + "getHistoryDailyTasks" 
+        	url : url_api + "getHistoryDailyTasks" ,
+        	params : data 
 	    });
 	}
 
