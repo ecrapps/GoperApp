@@ -18,7 +18,7 @@ body {
 
 /* Comments */
 .commentSelected{
-	background-color: #cacaca !important;
+    background-color: #cacaca !important;
 }
 
 .commentListHeight {
@@ -34,6 +34,12 @@ body {
 .md-button.smallCommentsButton {
     min-width: 10px;
     opacity: 0;
+}
+
+/* Association modals */
+.modalListHeight {
+    height: 400px;
+    overflow: auto;
 }
 
 /* Page Import */

@@ -5,7 +5,7 @@ GoperApp.controller('AdministrationController', ['$scope', function ($scope) {
 
     vm.tabs = [
         {
-            name : 'Tasks',
+            name : 'Tâches',
             templateUrl : 'views/content/administration/Tasks.html'
         },
     	{
