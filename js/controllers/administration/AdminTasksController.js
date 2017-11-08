@@ -151,6 +151,7 @@
    		}
    		$scope.rowCollection = [];
    		$scope.selectedList = [];
+   		$scope.selectedTypeList = [];
 
    		//$scope.rowCollectionTrains = [];
    		//$scope.selectedTrains = [];
@@ -161,15 +162,7 @@
    		$scope.initializedSelectedClients = [];
 
    		$scope.tabTypes = {};
-
-   		$scope.assureCheckboxesCompatibility = assureCheckboxesCompatibility;
-
-   		function assureCheckboxesCompatibility() {
-   			if ($scope.tabTypes[0].common) {
-   				
-   			}
-   		}
-   		
+   		$scope.verifyTypesCompatibility = verifyTypesCompatibility;
 
    		// Methods
    		$scope.toggle = toggle;
@@ -192,71 +185,130 @@
 		//$scope.getTrainsInTask();
 		$scope.getClientsInTask();
 
+		function verifyTypesCompatibility(typeChecked) {
+			// Si le typeChecked est sélectionné, alors déselectionner les autres
+			// Si md est sélectionné et train ne l'est pas, sélectionner aussi train
+			switch(typeChecked) {
+			    case 'common':
+			        if ($scope.tabTypes[0].common) {
+			        	$scope.tabTypes[0].cancellation = false;
+			        	$scope.tabTypes[0].train = false;
+			        	$scope.tabTypes[0].md = false;
+			        	$scope.tabTypes[0].client = false;
+			        }
+			        break;
+			    case 'cancellation':
+			        if ($scope.tabTypes[0].cancellation) {
+			        	$scope.tabTypes[0].common = false;
+			        	$scope.tabTypes[0].train = false;
+			        	$scope.tabTypes[0].md = false;
+			        	$scope.tabTypes[0].client = false;
+			        }
+			        break;
+			    case 'train':
+			        if ($scope.tabTypes[0].train) {
+			        	$scope.tabTypes[0].common = false;
+			        	$scope.tabTypes[0].cancellation = false;
+			        	$scope.tabTypes[0].client = false;
+			        }
+			        break;
+			    case 'md':
+			        if ($scope.tabTypes[0].md) {
+			        	$scope.tabTypes[0].common = false;
+			        	$scope.tabTypes[0].cancellation = false;
+			        	$scope.tabTypes[0].train = true;
+			        	$scope.tabTypes[0].client = false;
+			        }
+			        break;
+			    case 'client':
+			        if ($scope.tabTypes[0].client) {
+			        	$scope.tabTypes[0].common = false;
+			        	$scope.tabTypes[0].cancellation = false;
+			        	$scope.tabTypes[0].train = false;
+			        	$scope.tabTypes[0].md = false;
+			        }
+			        break;
+			    default:
+			        /* ne rien faire */
+			}
+		}
+
    		function selectList(list, selectedListType) {
    			$scope.rowCollection = list;
    			$scope.selectedList = selectedListType;
    		}
 
    		function apply() {
-   			if ($scope.tabTypes[0].common) {
-   				AdminTasksService.associateCommonTask(task.id)
-					.then(function mySuccess(response) {
-				    }, function myError(response) {
-				        $log.log("AdminTasksService.associateCommonTask failed");
-				    });
+   			if ($scope.tabTypes[0].common || $scope.tabTypes[0].cancellation || $scope.tabTypes[0].train || $scope.tabTypes[0].client) {
+   				if (($scope.tabTypes[0].client && $scope.selectedClients.length > 0) || !$scope.tabTypes[0].client) {
+   					if (!$scope.tabTypes[0].client && $scope.selectedClients.length > 0) {
+	   					$scope.selectedClients = [];
+	   				}   				
+   					if ($scope.tabTypes[0].common) {
+		   				AdminTasksService.associateCommonTask(task.id)
+							.then(function mySuccess(response) {
+						    }, function myError(response) {
+						        $log.log("AdminTasksService.associateCommonTask failed");
+						    });
+		   			}
+		   			else {
+		   				AdminTasksService.deleteCommonTask(task.id)
+							.then(function mySuccess(response) {
+						    }, function myError(response) {
+						        $log.log("AdminTasksService.deleteCommonTask failed");
+						    });
+		   			}
+		   			if ($scope.tabTypes[0].cancellation) {
+		   				AdminTasksService.associateCancellationTask(task.id)
+							.then(function mySuccess(response) {
+						    }, function myError(response) {
+						        $log.log("AdminTasksService.associateCancellationTask failed");
+						    });
+		   			}
+		   			else {
+		   				AdminTasksService.deleteCancellationTask(task.id)
+							.then(function mySuccess(response) {
+						    }, function myError(response) {
+						        $log.log("AdminTasksService.deleteCancellationTask failed");
+						    });
+		   			}
+		   			if ($scope.tabTypes[0].md) {
+		   				AdminTasksService.associateMdTask(task.id)
+							.then(function mySuccess(response) {
+						    }, function myError(response) {
+						        $log.log("AdminTasksService.associateMdTask failed");
+						    });
+		   			}
+		   			else {
+		   				AdminTasksService.deleteMdTask(task.id)
+							.then(function mySuccess(response) {
+						    }, function myError(response) {
+						        $log.log("AdminTasksService.deleteMdTask failed");
+						    });
+		   			}
+		   			if ($scope.tabTypes[0].train) {
+		   				AdminTasksService.associateTrainTask(task.id)
+							.then(function mySuccess(response) {
+						    }, function myError(response) {
+						        $log.log("AdminTasksService.associateTrainTask failed");
+						    });
+		   			}
+		   			else {
+		   				AdminTasksService.deleteTrainTask(task.id)
+							.then(function mySuccess(response) {
+						    }, function myError(response) {
+						        $log.log("AdminTasksService.deleteTrainTask failed");
+						    });
+		   			}
+		   			//$scope.doInsertOrDeleteListTrains();
+		   			$scope.doInsertOrDeleteListClients();
+		   			$scope.hide();
+   				} else {
+   					alert("Vous devez choisir au moins un client à affecter à cette tâche.")
+   				}
+   			} else {
+   				alert("Vous devez choisir au moins un type à affecter à cette tâche.")
    			}
-   			else {
-   				AdminTasksService.deleteCommonTask(task.id)
-					.then(function mySuccess(response) {
-				    }, function myError(response) {
-				        $log.log("AdminTasksService.deleteCommonTask failed");
-				    });
-   			}
-   			if ($scope.tabTypes[0].cancellation) {
-   				AdminTasksService.associateCancellationTask(task.id)
-					.then(function mySuccess(response) {
-				    }, function myError(response) {
-				        $log.log("AdminTasksService.associateCancellationTask failed");
-				    });
-   			}
-   			else {
-   				AdminTasksService.deleteCancellationTask(task.id)
-					.then(function mySuccess(response) {
-				    }, function myError(response) {
-				        $log.log("AdminTasksService.deleteCancellationTask failed");
-				    });
-   			}
-   			if ($scope.tabTypes[0].md) {
-   				AdminTasksService.associateMdTask(task.id)
-					.then(function mySuccess(response) {
-				    }, function myError(response) {
-				        $log.log("AdminTasksService.associateMdTask failed");
-				    });
-   			}
-   			else {
-   				AdminTasksService.deleteMdTask(task.id)
-					.then(function mySuccess(response) {
-				    }, function myError(response) {
-				        $log.log("AdminTasksService.deleteMdTask failed");
-				    });
-   			}
-   			if ($scope.tabTypes[0].train) {
-   				AdminTasksService.associateTrainTask(task.id)
-					.then(function mySuccess(response) {
-				    }, function myError(response) {
-				        $log.log("AdminTasksService.associateTrainTask failed");
-				    });
-   			}
-   			else {
-   				AdminTasksService.deleteTrainTask(task.id)
-					.then(function mySuccess(response) {
-				    }, function myError(response) {
-				        $log.log("AdminTasksService.deleteTrainTask failed");
-				    });
-   			}
-   			//$scope.doInsertOrDeleteListTrains();
-   			$scope.doInsertOrDeleteListClients();
-   			$scope.hide();
    		}
 
    		/* Keep this function in case the processs changes and we need this again later */
@@ -338,7 +390,7 @@
 
 	    function exists (item, list) {
 	    	if (list) {
-		    	for (var i = list.length - 1; i >= 0; i--) {
+	    		for (var i = list.length - 1; i >= 0; i--) {
 		    		if (list[i].id == item.id)
 		    			return true;
 		    	}
