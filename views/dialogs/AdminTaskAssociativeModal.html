@@ -25,20 +25,20 @@
               </md-checkbox>
               Annulation
             </md-list-item>
+            <md-list-item ng-click="selectList(null, null); tabTypes[0].train=!tabTypes[0].train">
+              <md-checkbox aria-label="sélection" ng-checked="tabTypes[0].train" ng-model="tabTypes[0].train">
+              </md-checkbox>
+              Train Id
+            </md-list-item>
             <md-list-item ng-click="selectList(null, null); tabTypes[0].md=!tabTypes[0].md">
               <md-checkbox aria-label="sélection" ng-checked="tabTypes[0].md" ng-model="tabTypes[0].md">
               </md-checkbox>
               MD
             </md-list-item>
             <md-list-item ng-click="selectList(rowCollectionClients, selectedClients)">
-              <md-checkbox ng-checked="tabTypes[0].client" aria-label="sélection">
+              <md-checkbox aria-label="sélection" ng-checked="tabTypes[0].client">
               </md-checkbox>
               Client
-            </md-list-item>
-            <md-list-item ng-click="selectList(rowCollectionTrains, selectedTrains)">
-              <md-checkbox ng-checked="tabTypes[0].train" aria-label="sélection">
-              </md-checkbox>
-              TrainId
             </md-list-item>
           </md-list>
         </div>

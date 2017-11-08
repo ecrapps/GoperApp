@@ -152,36 +152,44 @@
    		$scope.rowCollection = [];
    		$scope.selectedList = [];
 
-   		$scope.rowCollectionTrains = [];
-   		$scope.selectedTrains = [];
-   		$scope.initializedSelectedTrains = [];
+   		//$scope.rowCollectionTrains = [];
+   		//$scope.selectedTrains = [];
+   		//$scope.initializedSelectedTrains = [];
 
    		$scope.rowCollectionClients = [];
    		$scope.selectedClients = [];
    		$scope.initializedSelectedClients = [];
 
    		$scope.tabTypes = {};
+
+   		$scope.assureCheckboxesCompatibility = assureCheckboxesCompatibility;
+
+   		function assureCheckboxesCompatibility() {
+   			if ($scope.tabTypes[0].common) {
+   				
+   			}
+   		}
    		
 
    		// Methods
    		$scope.toggle = toggle;
    		$scope.exists =  exists;
-   		$scope.getTrainIds = getTrainIds;
-   		$scope.getTrainsInTask = getTrainsInTask;
+   		//$scope.getTrainIds = getTrainIds;
+   		//$scope.getTrainsInTask = getTrainsInTask;
    		$scope.getClients = getClients;
    		$scope.getClientsInTask = getClientsInTask;
    		$scope.getTaskTypes = getTaskTypes;
    		$scope.hide = hide;
    		$scope.cancel = cancel;
    		$scope.selectList = selectList;
-   		$scope.doInsertOrDeleteListTrains = doInsertOrDeleteListTrains;
+   		//$scope.doInsertOrDeleteListTrains = doInsertOrDeleteListTrains;
    		$scope.doInsertOrDeleteListClients = doInsertOrDeleteListClients;
    		$scope.apply = apply;
 
-   		$scope.getTrainIds();
+   		//$scope.getTrainIds();
 	    $scope.getClients();
 	    $scope.getTaskTypes();
-		$scope.getTrainsInTask();
+		//$scope.getTrainsInTask();
 		$scope.getClientsInTask();
 
    		function selectList(list, selectedListType) {
@@ -194,50 +202,65 @@
    				AdminTasksService.associateCommonTask(task.id)
 					.then(function mySuccess(response) {
 				    }, function myError(response) {
-				        $log.log("Get tasks by tasks failed");
+				        $log.log("AdminTasksService.associateCommonTask failed");
 				    });
    			}
    			else {
    				AdminTasksService.deleteCommonTask(task.id)
 					.then(function mySuccess(response) {
 				    }, function myError(response) {
-				        $log.log("Get tasks by tasks failed");
+				        $log.log("AdminTasksService.deleteCommonTask failed");
 				    });
    			}
    			if ($scope.tabTypes[0].cancellation) {
    				AdminTasksService.associateCancellationTask(task.id)
 					.then(function mySuccess(response) {
 				    }, function myError(response) {
-				        $log.log("Get tasks by tasks failed");
+				        $log.log("AdminTasksService.associateCancellationTask failed");
 				    });
    			}
    			else {
    				AdminTasksService.deleteCancellationTask(task.id)
 					.then(function mySuccess(response) {
 				    }, function myError(response) {
-				        $log.log("Get tasks by tasks failed");
+				        $log.log("AdminTasksService.deleteCancellationTask failed");
 				    });
    			}
    			if ($scope.tabTypes[0].md) {
    				AdminTasksService.associateMdTask(task.id)
 					.then(function mySuccess(response) {
 				    }, function myError(response) {
-				        $log.log("Get tasks by tasks failed");
+				        $log.log("AdminTasksService.associateMdTask failed");
 				    });
    			}
    			else {
    				AdminTasksService.deleteMdTask(task.id)
 					.then(function mySuccess(response) {
 				    }, function myError(response) {
-				        $log.log("Get tasks by tasks failed");
+				        $log.log("AdminTasksService.deleteMdTask failed");
 				    });
    			}
-   			$scope.doInsertOrDeleteListTrains();
+   			if ($scope.tabTypes[0].train) {
+   				AdminTasksService.associateTrainTask(task.id)
+					.then(function mySuccess(response) {
+				    }, function myError(response) {
+				        $log.log("AdminTasksService.associateTrainTask failed");
+				    });
+   			}
+   			else {
+   				AdminTasksService.deleteTrainTask(task.id)
+					.then(function mySuccess(response) {
+				    }, function myError(response) {
+				        $log.log("AdminTasksService.deleteTrainTask failed");
+				    });
+   			}
+   			//$scope.doInsertOrDeleteListTrains();
    			$scope.doInsertOrDeleteListClients();
    			$scope.hide();
    		}
 
-   		function doInsertOrDeleteListTrains () {
+   		/* Keep this function in case the processs changes and we need this again later */
+   		/*function doInsertOrDeleteListTrains () {
    			var tmpDelete = $scope.initializedSelectedTrains;
    			var tmpAdd = $scope.selectedTrains;
    			var idx = -1;
@@ -265,7 +288,7 @@
 				        $log.log("Get tasks by tasks failed");
 				    });
    			}
-   		}
+   		}*/
 
    		function doInsertOrDeleteListClients () {
    			var tmpDelete = $scope.initializedSelectedClients;
@@ -328,21 +351,21 @@
 				.then(function mySuccess(response) {
 					$scope.tabTypes = response.data;
 			    }, function myError(response) {
-			        $log.log("Get trains failed");
+			        $log.log("getTaskTypes failed");
 			    });
 		}
 
 
-   		function getTrainIds() {
+   		/*function getTrainIds() {
 			AdminTrainIdService.getTrainIds()
 				.then(function mySuccess(response) {
 					$scope.rowCollectionTrains = response.data;
 			    }, function myError(response) {
-			        $log.log("Get trains failed");
+			        $log.log("getTrainIds failed");
 			    });
-		}
+		}*/
 
-		function getTrainsInTask() {
+		/*function getTrainsInTask() {
 			AdminTasksService.getTrainsInTask(task.id)
 				.then(function mySuccess(response) {
 					$scope.selectedTrains = angular.copy(response.data);
@@ -350,7 +373,7 @@
 			    }, function myError(response) {
 			        $log.log("Get trains in task failed");
 			    });
-		}
+		}*/
 
 		function getClients() {
 			AdminClientsService.getClients()

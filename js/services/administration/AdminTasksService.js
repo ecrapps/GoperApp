@@ -59,7 +59,8 @@ GoperApp.factory('AdminTasksService', ['$http', 'URL_TRAIN_API', function($http,
         });
     }
 
-    factory.deleteTrainTask = function(idTrain, idTask) {
+    /* Keep these functions in case the processs changes and we need them again later */
+    /*factory.deleteTrainTask = function(idTrain, idTask) {
         var data = {
             idTrain : idTrain,
             idTask : idTask
@@ -92,7 +93,7 @@ GoperApp.factory('AdminTasksService', ['$http', 'URL_TRAIN_API', function($http,
             url : url_api + "getTrainsInTask", 
             params: data
         });
-    }
+    }*/
 
     factory.deleteClientTask = function(idClient, idTask) {
         var data = {
@@ -191,6 +192,28 @@ GoperApp.factory('AdminTasksService', ['$http', 'URL_TRAIN_API', function($http,
         return $http({
             method : "POST",
             url : url_api + "associateMdTask", 
+            data: data
+        });
+    }
+
+    factory.deleteTrainTask = function(idTask) {
+        var data = {
+            idTask : idTask
+        };
+        return $http({
+            method : "POST",
+            url : url_api + "deleteTrainTask", 
+            data: data
+        });
+    }
+
+    factory.associateTrainTask = function(idTask) {
+        var data = {
+            idTask : idTask
+        };
+        return $http({
+            method : "POST",
+            url : url_api + "associateTrainTask", 
             data: data
         });
     }
