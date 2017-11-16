@@ -46,10 +46,11 @@ GoperApp.factory('TaskService', ['$http', 'URL_TRAIN_API', function($http, URL_T
 	    });
 	}
 
-	factory.updateTaskCheck = function(task) {
+	factory.updateTaskCheck = function(task, idUser) {
 		var data = {
 			taskId : task.id,
-			taskIsChecked : task.checked
+			taskIsChecked : task.checked,
+			idUser : idUser
 		}
 
 		return $http({

@@ -132,7 +132,7 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 	    }
 
 		function updateTaskCheck(task) {
-	    	TaskService.updateTaskCheck(task)
+	    	TaskService.updateTaskCheck(task, idSession.idUser)
 				.then(function mySuccess(response) {
 					ToastService.displayToast("Enregistré !");
 					$scope.getDailyTasks(idSession.idUser);

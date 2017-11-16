@@ -42,6 +42,14 @@ body {
     overflow: auto;
 }
 
+/* Page Login */
+#line-break{
+    background-image: url("../assets/img/line.png");
+    background-repeat: repeat-x;
+    height: 5px;
+    margin: 0 16px;
+}
+
 /* Page Import */
 .inputUploadHide{
     width: 0.1px;
@@ -112,3 +120,4 @@ body {
     max-height: 240px;
 }
 /* END Filter term on select input */
+

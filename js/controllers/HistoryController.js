@@ -128,7 +128,7 @@ GoperApp.controller('HistoryController', ['$scope', '$http', '$mdDialog', 'TaskS
 	    }
 
 		function updateTaskCheck(task) {
-	    	TaskService.updateTaskCheck(task)
+	    	TaskService.updateTaskCheck(task, idSession.idUser)
 				.then(function mySuccess(response) {
 					ToastService.displayToast("Enregistré !");
 					$scope.getHistoryDailyTasks(idSession.idUser);
