@@ -10,6 +10,7 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 	    $scope.getDailyTasks = getDailyTasks;
 	    $scope.onFilterChanged = onFilterChanged;
 	    $scope.openMenu = openMenu;
+		$scope.setWidthAndHeight = setWidthAndHeight;
 	    $scope.sortReverse = false;
 	    $scope.sortType = 'Délai';
 	    $scope.updateTaskCheck = updateTaskCheck;
@@ -46,7 +47,38 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 	    };
 	    // end ag-grid data
 
+	    var w = window,
+		    d = document,
+		    e = d.documentElement,
+		    g = d.getElementsByTagName('body')[0],
+		    x = w.innerWidth || e.clientWidth || g.clientWidth,
+		    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+		var contentElement = document.querySelector('#contentElement');
+		var myGrid = document.querySelector('#myGrid');
+
 	    // METHODS
+		function setWidthAndHeight(width, height, element) {
+	    	if (width != '' && element !== null) {
+	    		element.style.width = width;
+	    	}
+	    	if (height != '' && element !== null) {
+	    		element.style.height = height;
+	    	}
+		}
+
+		if (y > 870) {
+			setWidthAndHeight('', '89%', contentElement);
+		} else {
+			setWidthAndHeight('', '83%', contentElement);
+		}
+
+		if (y > 870) {
+			setWidthAndHeight('', '87%', myGrid);
+		} else {
+			setWidthAndHeight('', '85%', myGrid);
+		}
+
 		function addComment() {
 	      	$scope.createComment = !$scope.createComment;
 	    }

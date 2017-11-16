@@ -17,13 +17,16 @@
 	      	</md-button>
 	    </div>
   	</md-toolbar>
-	<md-list>
-		<md-list-item ng-repeat="trainId in vm.trainIds" class="md-2-line compact" ng-click="vm.dialogAssociateTrainIdToUsers($event, trainId)">
-			  <md-checkbox aria-label="trainId séléctionnée" ng-click="vm.toggle(trainId, vm.selectedTrainIds)"></md-checkbox>
-	    	<div class="md-list-item-text">
-	      		<h3>{{ trainId.name }}</h3>
-	      		<p ng-if="trainId.isMD">Train de type MD</p>
-	    	</div>
-		</md-list-item>
-	</md-list>
+
+  	<md-content id="administrationContentElement">
+		<md-list>
+			<md-list-item ng-repeat="trainId in vm.trainIds" class="md-2-line compact" ng-click="vm.dialogAssociateTrainIdToUsers($event, trainId)">
+				  <md-checkbox aria-label="trainId séléctionnée" ng-click="vm.toggle(trainId, vm.selectedTrainIds)"></md-checkbox>
+		    	<div class="md-list-item-text">
+		      		<h3>{{ trainId.name }}</h3>
+		      		<p ng-if="trainId.isMD">Train de type MD</p>
+		    	</div>
+			</md-list-item>
+		</md-list>
+	</md-content>
 </md-content>

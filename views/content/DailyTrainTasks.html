@@ -1,7 +1,7 @@
-<div ng-controller="DailyTrainTasksController">
-	
+<md-content ng-controller="DailyTrainTasksController">
+  <div layout="column" id="contentElement">
 	<div layout="row">
-		<div layout="row">
+		<div layout="row" flex>
 			<md-input-container class="filterByClientSelectBox">
 				<label translate="DAILY_TASKS_TRAIN.FILTER_BY_CLIENT">Filter by client</label>
 				<md-select ng-model="selectedClients"
@@ -18,7 +18,7 @@
 			</md-input-container>
 	    </div>
 
-		<div flex-offset="70"></div>
+		<div flex-offset="60"></div>
 		<div flex>
 			<input placeholder="{{ 'DAILY_TASKS_TRAIN.FILTER_BY_SEARCH' | translate }}" class="filterInput" type="text" ng-model="filter" ng-change="onFilterChanged(filter)"/>
 		</div>
@@ -27,5 +27,5 @@
     <div style="padding-top: 26px; box-sizing: border-box;">
         <div id="myGrid" ag-grid="gridOptions" class="ag-theme-material" style="height: 100%;"></div>
     </div>
-
-</div>
+  </div>
+</md-content>

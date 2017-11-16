@@ -4,17 +4,41 @@
 	var vm = this;
 
 	// Data
-	vm.trainIds = [];
-	vm.selectedTrainIds = [];
-
-	// Methods
 	vm.getTrainIds = getTrainIds;
 	vm.dialogCreateTrainId = dialogCreateTrainId;
 	vm.dialogEditTrainId = dialogEditTrainId;
 	vm.dialogDeleteTrainId = dialogDeleteTrainId;
 	vm.dialogAssociateTrainIdToTasks = dialogAssociateTrainIdToTasks;
 	vm.removeItem = removeItem;
+	vm.selectedTrainIds = [];
+    vm.setWidthAndHeight = setWidthAndHeight;
 	vm.toggle = toggle;
+	vm.trainIds = [];
+
+	var w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName('body')[0],
+        x = w.innerWidth || e.clientWidth || g.clientWidth,
+        y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+    var administrationContentElement = document.querySelector('#administrationContentElement');
+
+    // METHODS
+    function setWidthAndHeight(width, height, element) {
+        if (width != '' && element !== null) {
+            element.style.width = width;
+        }
+        if (height != '' && element !== null) {
+            element.style.height = height;
+        }
+    }
+
+    if (y > 870) {
+        setWidthAndHeight('', '83%', administrationContentElement);
+    } else {
+        setWidthAndHeight('', '74%', administrationContentElement);
+    }
 
 	vm.getTrainIds();
 

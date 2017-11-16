@@ -1,5 +1,4 @@
-<div ng-controller="HomeController">
-  <div layout="row">
+<div layout="row" ng-controller="HomeController">
   	<md-sidenav 
   		flex="20"
 	    class="md-sidenav-left"
@@ -9,9 +8,9 @@
 	    layout-fill
 	    ui-view="sidenav">
 	</md-sidenav>
-  	<div layout="column" flex>
+	
+  	<div layout="column" flex style="height: 100%">
       	<div ui-view="toolbar"></div>
-		<div ui-view></div>
+		<div ui-view layout-padding></div>
   	</div>
-  </div>
 </div>

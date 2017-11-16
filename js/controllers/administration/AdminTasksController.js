@@ -4,17 +4,41 @@
 	var vm = this;
 
 	// Datas
-	vm.tasks = [];
-	vm.selectedTasks = [];
-
-	// Methods
 	vm.getTasks = getTasks;
 	vm.dialogCreateTask = dialogCreateTask;
 	vm.dialogEditTask = dialogEditTask;
 	vm.dialogDeleteTask = dialogDeleteTask;
 	vm.dialogTaskAssociative = dialogTaskAssociative;
 	vm.removeItem = removeItem;
+	vm.selectedTasks = [];
+    vm.setWidthAndHeight = setWidthAndHeight;
+	vm.tasks = [];
 	vm.toggle = toggle;
+
+	var w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName('body')[0],
+        x = w.innerWidth || e.clientWidth || g.clientWidth,
+        y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+    var administrationContentElement = document.querySelector('#administrationContentElement');
+
+    // METHODS
+    function setWidthAndHeight(width, height, element) {
+        if (width != '' && element !== null) {
+            element.style.width = width;
+        }
+        if (height != '' && element !== null) {
+            element.style.height = height;
+        }
+    }
+
+    if (y > 870) {
+        setWidthAndHeight('', '83%', administrationContentElement);
+    } else {
+        setWidthAndHeight('', '74%', administrationContentElement);
+    }
 
 	vm.getTasks();
 
