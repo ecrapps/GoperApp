@@ -55,7 +55,6 @@
 	    $mdDialog.show({
 	      controller: modalTaskController,
 	      templateUrl: 'views/dialogs/CreateTask.html',
-	      windowClass: 'large-Modal',
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
 	      locals: {
@@ -78,7 +77,6 @@
 	    $mdDialog.show({
 	      controller: modalTaskController,
 	      templateUrl: 'views/dialogs/CreateTask.html',
-	      windowClass: 'large-Modal',
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
 	      locals: {
@@ -148,7 +146,6 @@
 	    $mdDialog.show({
 	      controller: AdminTaskAssociativeController,
 	      templateUrl: 'views/dialogs/AdminTaskAssociativeModal.html',
-	      windowClass: 'large-Modal',
 	      parent: angular.element(document.body),
 	      locals: {
 	      	task: task
