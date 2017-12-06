@@ -14,6 +14,7 @@ GoperApp.controller('ImportController', ['$scope' , 'FileUploader', 'URL_TRAIN_A
         y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
     var contentElement = document.querySelector('#contentElement');
+    var messageElement = document.querySelector('#message');
 
     // METHODS
     function setWidthAndHeight(width, height, element) {
@@ -88,12 +89,21 @@ GoperApp.controller('ImportController', ['$scope' , 'FileUploader', 'URL_TRAIN_A
     };
     uploader.onProgressAll = function(progress) {
         console.info('onProgressAll', progress);
+        messageElement.innerHTML = "Import en cours. Veuillez patienter...";
+        messageElement.classList.add("alert");
+        messageElement.classList.add("alert-info");
     };
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
         console.info('onSuccessItem', fileItem, response, status, headers);
+        messageElement.innerHTML = "Données importées avec succès.";
+        messageElement.classList.remove("alert-info");
+        messageElement.classList.add("alert-success");
     };
     uploader.onErrorItem = function(fileItem, response, status, headers) {
         console.info('onErrorItem', fileItem, response, status, headers);
+        messageElement.innerHTML = "Une erreur est survenue.";
+        messageElement.classList.remove("alert-info");
+        messageElement.classList.add("alert-danger");
     };
     uploader.onCancelItem = function(fileItem, response, status, headers) {
         console.info('onCancelItem', fileItem, response, status, headers);

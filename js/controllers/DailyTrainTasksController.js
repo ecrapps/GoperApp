@@ -153,7 +153,7 @@ GoperApp.controller('DailyTrainTasksController', ['$scope', '$http', '$mdDialog'
 	    	}
 	    	
 			$scope.dailyTasks = dailyTasksNotFiltered.filter(function(el) {
-				return selectedIdCients.length > 0 ? selectedIdCients.includes(el.idClient) : true;
+				return selectedIdCients.length > 0 ? (selectedIdCients.includes(el.idClient) || (el.idClient == 0)) : true;
 			});
 
 			$scope.gridOptions.api.setRowData($scope.dailyTasks);
